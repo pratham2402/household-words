@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block title %}{{ entry.phrase }} · Household Words{% endblock %}
+{% block content %}
+<article class="entry-page">
+  <div class="entry-page-head">
+    <div>
+      <div class="kicker">Phrasebook / entry</div>
+      <h1>{{ entry.phrase }}</h1>
+      <div class="entry-subhead">
+        {% if entry.pronunciation %}<span>{{ entry.pronunciation }}</span>{% endif %}
+        <span>{{ entry.part_of_speech }}</span>
+        {% if entry.is_sample %}<span class="stamp">sample</span>{% endif %}
+      </div>
+    </div>
+    <div class="entry-actions">
+      <a class="button button-quiet" href="/">Back to phrasebook</a>
+      <button class="button button-quiet" type="button" onclick="window.print()">Print this entry</button>
+    </div>
+  </div>
+
+  <div class="entry-page-body">
+    <section class="definition">
+      <div class="field-label">Meaning</div>
+      <p>{{ entry.meaning }}</p>
+    </section>
+
+    <div class="entry-meta-grid">
+      <section>
+        <div class="field-label">Who says it</div>
+        <p>{{ entry.who_says_it }}</p>
+      </section>
+      <section>
+        <div class="field-label">How it is used</div>
+        <p>{{ entry.usage }}</p>
+      </section>
+      <section>
+        <div class="field-label">Where it came from</div>
+        <p>{{ entry.story }}</p>
+      </section>
+      <section>
+        <div class="field-label">Example</div>
+        <p>{{ entry.example }}</p>
+      </section>
+    </div>
+  </div>
+
+  <div class="entry-page-foot">
+    <a class="text-link" href="/add">Add another phrase</a>
+    <span class="mono">Household Words · the Vale family sample</span>
+  </div>
+</article>
+{% endblock %}

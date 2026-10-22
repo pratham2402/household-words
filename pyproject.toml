@@ -1,0 +1,23 @@
+[project]
+name = "household-words"
+version = "0.1.0"
+description = "A small dictionary for the words only your family uses."
+requires-python = ">=3.13"
+dependencies = [
+    "fastapi>=0.115.0",
+    "httpx>=0.28.0",
+    "jinja2>=3.1.4",
+    "openai>=1.50.0",
+    "python-dotenv>=1.0.1",
+    "python-multipart>=0.0.9",
+    "uvicorn[standard]>=0.30.0",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.0.0",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]

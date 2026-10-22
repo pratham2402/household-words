@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}Household Words{% endblock %}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=IBM+Plex+Mono:wght@400;500&family=Public+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="wordmark" href="/">
+      <span class="wordmark-main">Household</span>
+      <span class="wordmark-sub">Words</span>
+    </a>
+    <nav class="site-nav" aria-label="Main">
+      <a class="{% if path == '/' %}active{% endif %}" href="/">Phrasebook</a>
+      <a class="{% if path.startswith('/add') or path.startswith('/interview') %}active{% endif %}" href="/add">Add a phrase</a>
+      <a class="{% if path == '/print' %}active{% endif %}" href="/print">Print</a>
+    </nav>
+    <div class="ai-note {% if live_ai %}is-live{% endif %}">
+      {% if live_ai %}Live AI{% else %}Fallback questions{% endif %}
+    </div>
+  </header>
+
+  <main class="page">
+    {% if msg %}<div class="flash" role="status">{{ msg }}</div>{% endif %}
+    {% if error %}<div class="flash flash-error" role="alert">{{ error }}</div>{% endif %}
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer class="site-footer">
+    <span>A small dictionary for the words only your family uses.</span>
+    <span>Built with FastAPI, SQLite, and Nebius Token Factory.</span>
+  </footer>
+  <script src="/static/app.js"></script>
+</body>
+</html>

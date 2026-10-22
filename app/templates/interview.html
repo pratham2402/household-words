@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block title %}Interview · Household Words{% endblock %}
+{% block content %}
+<section class="interview-head">
+  <div class="kicker">Interview</div>
+  <h1>Tell us about “{{ phrase }}”.</h1>
+  <p class="lede">
+    The AI asks. You answer. The entry is built from your words, not from
+    a model's idea of your family.
+  </p>
+  {% if ai_mode == 'fallback' %}
+  <div class="note">
+    The AI is unavailable, so these are the standard questions. Your answers
+    still work.
+  </div>
+  {% endif %}
+</section>
+
+<form class="interview-form" method="post" action="/preview" data-loading="Building the entry…">
+  <input type="hidden" name="phrase" value="{{ phrase }}">
+  {% for question in questions %}
+  <div class="question">
+    <label for="{{ question.key }}">
+      <span class="question-number">{{ "%02d"|format(loop.index) }}</span>
+      {{ question.prompt }}
+    </label>
+    <textarea id="{{ question.key }}" name="{{ question.key }}" maxlength="600" rows="3" placeholder="Say it the way you would say it at home."></textarea>
+  </div>
+  {% endfor %}
+  <div class="form-actions">
+    <button class="button" type="submit">Build the entry</button>
+    <a class="text-link" href="/add">Use a different phrase</a>
+  </div>
+  <p class="field-help">Skip what you don't know. The next screen lets you edit everything.</p>
+</form>
+{% endblock %}

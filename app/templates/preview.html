@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% block title %}Draft entry · Household Words{% endblock %}
+{% block content %}
+<section class="interview-head">
+  <div class="kicker">Draft entry</div>
+  <h1>Make it sound like your family.</h1>
+  <p class="lede">
+    The AI drafted this from your answers. Change anything that does not
+    sound right. A saved entry cannot be edited, so this is the editing step.
+  </p>
+  {% if ai_mode == 'fallback' %}
+  <div class="note">
+    The AI was unavailable. This draft is built directly from your answers.
+  </div>
+  {% endif %}
+  {% if existing %}
+  <div class="note">
+    Already in the phrasebook: <a href="/entries/{{ existing.id }}">{{ existing.phrase }}</a>
+  </div>
+  {% endif %}
+</section>
+
+<form class="entry-form" method="post" action="/save" data-loading="Saving…">
+  <div class="entry-form-head">
+    <div>
+      <label for="phrase">Phrase</label>
+      <input id="phrase" name="phrase" type="text" maxlength="80" value="{{ entry.phrase }}" required>
+    </div>
+    <div>
+      <label for="pronunciation">Say it like</label>
+      <input id="pronunciation" name="pronunciation" type="text" maxlength="120" value="{{ entry.pronunciation }}" placeholder="thuh good SIZ-ers">
+    </div>
+    <div>
+      <label for="part_of_speech">Part of speech</label>
+      <input id="part_of_speech" name="part_of_speech" type="text" maxlength="60" value="{{ entry.part_of_speech }}">
+    </div>
+  </div>
+
+  <div class="entry-form-body">
+    <div class="field-block">
+      <label for="meaning">Meaning</label>
+      <textarea id="meaning" name="meaning" maxlength="600" rows="4">{{ entry.meaning }}</textarea>
+    </div>
+    <div class="two-col">
+      <div class="field-block">
+        <label for="who_says_it">Who says it</label>
+        <textarea id="who_says_it" name="who_says_it" maxlength="600" rows="3">{{ entry.who_says_it }}</textarea>
+      </div>
+      <div class="field-block">
+        <label for="usage">How it is used</label>
+        <textarea id="usage" name="usage" maxlength="600" rows="3">{{ entry.usage }}</textarea>
+      </div>
+    </div>
+    <div class="field-block">
+      <label for="story">Where it came from</label>
+      <textarea id="story" name="story" maxlength="600" rows="4">{{ entry.story }}</textarea>
+    </div>
+    <div class="field-block">
+      <label for="example">Example sentence</label>
+      <textarea id="example" name="example" maxlength="600" rows="2">{{ entry.example }}</textarea>
+    </div>
+  </div>
+
+  <div class="form-actions">
+    <button class="button" type="submit">Save to the phrasebook</button>
+    <a class="text-link" href="/">Cancel</a>
+  </div>
+</form>
+{% endblock %}

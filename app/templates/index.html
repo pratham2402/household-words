@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% block title %}The Vale family phrasebook · Household Words{% endblock %}
+{% block content %}
+<section class="hero">
+  <div class="hero-copy">
+    <div class="kicker">A family dictionary</div>
+    <h1>Every family has its own language.</h1>
+    <p class="lede">
+      A nickname. A saying. A mispronunciation that stuck. Household Words
+      asks the questions and keeps the answer.
+    </p>
+  </div>
+  <div class="hero-actions">
+    <a class="button" href="/add">Add a phrase</a>
+    <a class="button button-quiet" href="/print">Print the phrasebook</a>
+  </div>
+</section>
+
+<section class="note-strip">
+  <span class="stamp">sample</span>
+  <span>The Vale family is fictional. The three sample entries are marked.</span>
+</section>
+
+<section class="toolbar">
+  <label class="search">
+    <span>Search the phrasebook</span>
+    <input id="search" type="search" placeholder="Try “scissors” or “porch”" autocomplete="off">
+  </label>
+  <div class="count" id="search-count">{{ entries|length }} entries</div>
+</section>
+
+<section class="entry-grid" id="entry-grid">
+  {% for entry in entries %}
+  <a class="entry-card" href="/entries/{{ entry.id }}" data-search="{{ (entry.phrase ~ ' ' ~ entry.meaning ~ ' ' ~ entry.who_says_it)|lower }}">
+    <div class="entry-top">
+      <span class="entry-number">{{ "%02d"|format(loop.index) }}</span>
+      {% if entry.is_sample %}<span class="stamp">sample</span>{% endif %}
+    </div>
+    <h2>{{ entry.phrase }}</h2>
+    {% if entry.pronunciation %}<div class="pronunciation">{{ entry.pronunciation }}</div>{% endif %}
+    <p class="entry-meaning">{{ entry.meaning }}</p>
+    <div class="entry-who">Said by {{ entry.who_says_it }}</div>
+  </a>
+  {% else %}
+  <div class="empty">
+    No phrases yet. <a href="/add">Add the first one.</a>
+  </div>
+  {% endfor %}
+</section>
+
+{% if not entries %}
+<div class="empty">
+  The phrasebook is empty. <a href="/add">Add the first phrase.</a>
+</div>
+{% endif %}
+{% endblock %}

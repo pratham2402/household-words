@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block title %}Add a phrase · Household Words{% endblock %}
+{% block content %}
+<section class="split">
+  <div class="split-copy">
+    <div class="kicker">Add a phrase</div>
+    <h1>What's a word only your family uses?</h1>
+    <p class="lede">
+      It can be a nickname, a warning, a tiny ritual, or a phrase that makes
+      no sense outside your house. Give it a name and the interview begins.
+    </p>
+    <div class="side-note">
+      <span class="side-label">Any language</span>
+      <p>Use the phrase exactly as it sounds at home. Spelling can be yours.</p>
+    </div>
+    <div class="side-note">
+      <span class="side-label">No account</span>
+      <p>This demo keeps the phrasebook in a local database on this machine.</p>
+    </div>
+  </div>
+
+  <div class="form-card">
+    <form method="post" action="/interview" data-loading="Writing the questions…">
+      <label for="phrase">The phrase</label>
+      <input id="phrase" name="phrase" type="text" maxlength="80" value="{{ phrase or '' }}" placeholder="the good scissors" required autofocus>
+      <p class="field-help">Any language. Any phrase. A mispronunciation is allowed.</p>
+      {% if existing %}
+      <p class="inline-link">
+        Already in the phrasebook: <a href="/entries/{{ existing.id }}">{{ existing.phrase }}</a>
+      </p>
+      {% endif %}
+      <button class="button" type="submit">Start the interview</button>
+    </form>
+    <div class="how">
+      <div><span>1</span> You give the phrase.</div>
+      <div><span>2</span> The AI asks four questions.</div>
+      <div><span>3</span> You edit the entry and save it.</div>
+    </div>
+  </div>
+</section>
+{% endblock %}

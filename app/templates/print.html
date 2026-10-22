@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block title %}Print the phrasebook · Household Words{% endblock %}
+{% block content %}
+<div class="print-toolbar">
+  <div>
+    <div class="kicker">Print view</div>
+    <h1>The Vale family phrasebook</h1>
+  </div>
+  <button class="button" type="button" onclick="window.print()">Print this page</button>
+</div>
+
+<div class="print-sheet">
+  <header class="print-cover">
+    <div class="kicker">Household Words</div>
+    <h2>A small dictionary for the words only your family uses.</h2>
+    <p>Collected from the Vale family. Sample entries are marked.</p>
+  </header>
+
+  {% for entry in entries %}
+  <article class="print-entry">
+    <div class="print-entry-head">
+      <h3>{{ entry.phrase }}</h3>
+      {% if entry.is_sample %}<span class="stamp">sample</span>{% endif %}
+    </div>
+    <div class="print-entry-sub">
+      {% if entry.pronunciation %}<span>{{ entry.pronunciation }}</span>{% endif %}
+      <span>{{ entry.part_of_speech }}</span>
+    </div>
+    <p class="print-meaning">{{ entry.meaning }}</p>
+    <dl>
+      <dt>Who says it</dt><dd>{{ entry.who_says_it }}</dd>
+      <dt>How it is used</dt><dd>{{ entry.usage }}</dd>
+      <dt>Where it came from</dt><dd>{{ entry.story }}</dd>
+      <dt>Example</dt><dd>{{ entry.example }}</dd>
+    </dl>
+  </article>
+  {% endfor %}
+
+  <footer class="print-footer">
+    Printed from Household Words. The Vale family is fictional.
+  </footer>
+</div>
+{% endblock %}
