@@ -6,6 +6,12 @@ Household Words asks four questions about a family phrase, turns the answers int
 
 Built for the Devpost **Build With AI: Basics** hackathon.
 
+## Demo
+
+[Watch the 85-second demo](https://youtu.be/VIG4UDS5qFY).
+
+Submitted on [Devpost](https://devpost.com/software/household-words).
+
 ## What it does
 
 - Start with a phrase, for example "the good scissors."
