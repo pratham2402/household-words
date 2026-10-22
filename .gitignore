@@ -11,3 +11,7 @@ shots/
 *.log
 
 video/
+
+# Installer copies for other agent harnesses
+agent/
+data/skills/
