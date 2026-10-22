@@ -9,7 +9,7 @@ Build mode: fast
 
 ## Slices
 
-- [ ] **1. The phrasebook renders with sample entries**
+- [x] **1. The phrasebook renders with sample entries**
   Becomes usable: A running app shows three fictional Vale family entries in a warm, readable grid.
   Why now: Proves the scaffold, database seed, template layout, and visual direction in one pass.
   PRD ref: `prd.md > Screens and Layout`, `prd.md > Features and Behavior`
@@ -18,7 +18,7 @@ Build mode: fast
   Verify: Start the server, open `/`, and confirm the three entries render.
   Commit: `Build the phrasebook shell and sample entries`
 
-- [ ] **2. A phrase can start an interview**
+- [x] **2. A phrase can start an interview**
   Becomes usable: The visitor can submit a phrase and see four questions tailored to it.
   Why now: The interview is the unique kernel and the first AI call.
   PRD ref: `prd.md > The Core Journey` steps 3-5
@@ -27,7 +27,7 @@ Build mode: fast
   Verify: Submit "the good scissors" and confirm four questions render. Remove the key and confirm the fallback still works.
   Commit: `Add the phrase interview`
 
-- [ ] **3. Answers become a saved entry**
+- [x] **3. Answers become a saved entry**
   Becomes usable: The visitor answers the questions, edits the draft, saves it, and sees the entry in the phrasebook.
   Why now: This completes the end-to-end loop.
   PRD ref: `prd.md > The Core Journey` steps 5-8
@@ -36,7 +36,7 @@ Build mode: fast
   Verify: Add an entry, save it, and confirm it appears on `/` and `/entries/{id}`.
   Commit: `Turn answers into a saved dictionary entry`
 
-- [ ] **4. The phrasebook is usable**
+- [x] **4. The phrasebook is usable**
   Becomes usable: Search filters the entries, the print view fits on paper, and the empty and error states are clear.
   Why now: These are the finishing behaviors a reviewer will notice.
   PRD ref: `prd.md > States and Boundaries`, `prd.md > Printing`
@@ -45,7 +45,7 @@ Build mode: fast
   Verify: Search for "scissors", print to PDF, and submit an empty phrase.
   Commit: `Polish search, print, and empty states`
 
-- [ ] **5. The demo is ready**
+- [x] **5. The demo is ready**
   Becomes usable: A public repo with planning docs, tests, a 1080p video, and a thumbnail.
   Why now: The judges see the video and repo, not the local server.
   PRD ref: `prd.md > What We're Building`
